@@ -40,7 +40,7 @@ export const LinksArray = [
   {
     label: "Reportes",
     icon: <VarableIcon.iconoreportes />,
-    to: "/reportes",
+    to: "/reports",
   },
 
 ];
@@ -48,7 +48,7 @@ export const SecondarylinksArray = [
   {
     label: "Configuración",
     icon: <AiOutlineSetting />,
-    to: "/configurar",
+    to: "/config",
   },
 
 ];
@@ -72,14 +72,14 @@ export const DataModulosConfiguracion = [
     title: "Productos",
     subtitle: "registra tus productos",
     icono: "https://i.ibb.co/85zJ6yG/caja-del-paquete.png",
-    link: "/configurar/productos",
+    link: "/config/products",
 
   },
   {
     title: "Personal",
     subtitle: "ten el control de tu personal",
     icono: "https://i.ibb.co/5vgZ0fX/hombre.png",
-    link: "/configurar/usuarios",
+    link: "/config/users",
 
   },
 
@@ -87,27 +87,27 @@ export const DataModulosConfiguracion = [
     title: "Tu empresa",
     subtitle: "configura tus opciones básicas",
     icono: "https://i.ibb.co/x7mHPgm/administracion-de-empresas.png",
-    link: "/configurar/empresa",
+    link: "/config/company",
 
   },
   {
     title: "Categoria de productos",
     subtitle: "asigna categorias a tus productos",
     icono: "https://i.ibb.co/VYbMRLZ/categoria.png",
-    link: "/configurar/categorias",
+    link: "/config/categorys",
 
   },
   {
     title: "Marca de productos",
     subtitle: "gestiona tus marcas",
     icono: "https://i.ibb.co/1qsbCRb/piensa-fuera-de-la-caja.png",
-    link: "/configurar/marca",
+    link: "/config/brands",
 
   },
 
 ]
 //tipo usuario
-export const TipouserData = [
+export const TypeUserData = [
   {
     descripcion: "empleado",
     icono: "🪖",
@@ -118,7 +118,7 @@ export const TipouserData = [
   },
 ];
 //tipodoc
-export const TipoDocData = [
+export const TypeDocData = [
   {
     descripcion: "Dni",
     icono: "🪖",

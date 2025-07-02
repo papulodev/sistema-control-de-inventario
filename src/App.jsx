@@ -1,37 +1,33 @@
 import styled, { ThemeProvider } from 'styled-components'
+import { useState } from 'react'
 import { AuthContextProvider, Dark, Light } from './index'
 import AppRoutes from './routers/routes'
-import { createContext, useState } from 'react'
 import { Device } from './index'
-
-export const ThemeContext = createContext(null);
+import { useTheme } from './hooks/useTheme'
+import Sidebar from './components/sidebar/Sidebar'
+import HamburgerMenu from './components/HamburgerMenu'
 
 function App() {
-  const [themeuse, setThemeuse] = useState('dark');
-  const theme = themeuse === "light" ? "light" : "dark";
+  const { theme } = useTheme();
   const themeStyle = theme === "light" ? Light : Dark;
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <ThemeContext.Provider value={{ theme, setThemeuse }}>
-      <ThemeProvider theme={themeStyle}>
-        <AuthContextProvider>
-          <Container className={sidebarOpen ? 'sidebar-open' : ''}>
-            <section className='content-sidebar'>
-              {/* Sidebar content can go here */}
-              SIDE BAR
-            </section>
-            <section className='content-menuburger'>
-              MENU BURGER
-            </section>
-            <section className='content-routes'>
-              <AppRoutes />
-            </section>
-          </Container>
-        </AuthContextProvider>
-      </ThemeProvider>
-    </ThemeContext.Provider>
+    <ThemeProvider theme={themeStyle}>
+      <AuthContextProvider>
+        <Container className={sidebarOpen ? 'sidebar-open' : ''}>
+          <section className='content-sidebar'>
+            <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)} />
+          </section>
+          <section className='content-menuburger'>
+            <HamburgerMenu />
+          </section>
+          <section className='content-routes'>
+            <AppRoutes />
+          </section>
+        </Container>
+      </AuthContextProvider>
+    </ThemeProvider>
   )
 }
 
