@@ -6,26 +6,35 @@ import { Device } from './index'
 import { useTheme } from './hooks/useTheme'
 import Sidebar from './components/sidebar/Sidebar'
 import HamburgerMenu from './components/HamburgerMenu'
+import { useLocation } from 'react-router'
+import Login from './pages/Login'
 
 function App() {
   const { theme } = useTheme();
   const themeStyle = theme === "light" ? Light : Dark;
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { pathname } = useLocation();
 
   return (
     <ThemeProvider theme={themeStyle}>
       <AuthContextProvider>
-        <Container className={sidebarOpen ? 'sidebar-open' : ''}>
-          <section className='content-sidebar'>
-            <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)} />
-          </section>
-          <section className='content-menuburger'>
-            <HamburgerMenu />
-          </section>
-          <section className='content-routes'>
-            <AppRoutes />
-          </section>
-        </Container>
+        {
+          pathname === "/login" ? (
+            <Login />
+          ) : (
+            <Container className={sidebarOpen ? 'sidebar-open' : ''}>
+              <section className='content-sidebar'>
+                <Sidebar state={sidebarOpen} setState={() => setSidebarOpen(!sidebarOpen)} />
+              </section>
+              <section className='content-menuburger'>
+                <HamburgerMenu />
+              </section>
+              <section className='content-routes'>
+                <AppRoutes />
+              </section>
+            </Container>
+          )
+        }
       </AuthContextProvider>
     </ThemeProvider>
   )
