@@ -1,44 +1,44 @@
-import { useState } from 'react';
+import styled from 'styled-components';
 import logo from '../assets/inventarioslogo.png';
 import cart from '../assets/carrito.svg';
-import { useAuthStore } from '../store/AuthStore';
-import { Device } from '../styles/breackpoints';
+import FormInput from '../components/forms/FormInput';
+import { MdAlternateEmail } from 'react-icons/md';
+import { useUserStore } from '../store/UserStore';
 import { Link, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
-import { VarableIcon } from '../styles/variables';
+import { useMutation } from '@tanstack/react-query';
+import { RiLockPasswordLine } from 'react-icons/ri';
 import ButtonSave from '../components/shared/ButtonSave';
-import { MdOutlineInfo } from 'react-icons/md';
-import styled from 'styled-components';
-import FormInput from '../components/forms/FormInput';
-import FooterLogin from '../components/forms/FooterLogin';
+import { VarableIcon } from '../styles/variables';
+import { Device } from '../styles/breackpoints';
 
-function Login() {
+function Register() {
+  const { addUserAdmin } = useUserStore();
 
-  const { signInWithEmail } = useAuthStore();
-  const [initialState, setInitialState] = useState(false);
   const navigate = useNavigate();
-
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  async function handleSignIn(data) {
-    const response = await signInWithEmail({
-      email: data.email,
-      password: data.password,
-    });
-
-    if (response) {
-      navigate("/");
-    } else {
-      setInitialState(true);
-    }
-  }
-
+  const mutation = useMutation({
+    mutationFn: async (data) => {
+      const params = {
+        email: data.email,
+        password: data.password,
+        type_user: "admin"
+      };
+      const dt = await addUserAdmin(params);
+      if (dt) {
+        navigate("/");
+      } else {
+        console.error("Error al registrar el usuario");
+      }
+    },
+  });
   return (
-    <Container >
+    <Container>
       <div className="contentLogo">
         <img src={logo} />
         <span>Papulo Inventario</span>
@@ -48,27 +48,23 @@ function Login() {
       </div>
 
       <section className="contentCard">
-        <div className="card">
-          <Title>Papulo Inventario</Title>
-          <span className="help">
-            {" "}
-            Puedes crear una cuenta nueva ó <br></br>solicitar a tu empleador
-            una. <MdOutlineInfo />
-          </span>
-          <p className="phrase">Controla tu inventario.</p>
-          <form onSubmit={handleSubmit(handleSignIn)}>
+        <div className='card'>
+          <div className="headers">
+            <h1>Registrar usuario</h1>
+          </div>
+
+          <form onSubmit={handleSubmit(mutation.mutateAsync)}>
             <FormInput
-              icon={<VarableIcon.iconoemail />}
+              icon={<MdAlternateEmail />}
               register={register}
               name="email"
-              label="Email"
+              label="Correo"
               type="email"
               placeholder="eg: ejemplo@email.com"
-              error={errors.email?.type}
+              error={errors.correo?.type}
             />
-
             <FormInput
-              icon={<VarableIcon.iconopass />}
+              icon={<RiLockPasswordLine />}
               register={register}
               name="password"
               label="Contraseña"
@@ -77,26 +73,25 @@ function Login() {
               error={errors.password?.type}
             />
 
-            {initialState && (
-              <TextInitialState>Datos incorrectos</TextInitialState>
-            )}
-
             <ContainerButton>
-              <ButtonSave title="Iniciar" bgColor="#fc6b32" />
-              <Link to="/register" className='linkRegister'>
-                Crear cuenta
+              <ButtonSave
+                icon={<VarableIcon.iconoguardar />}
+                title="Guardar"
+                bgColor="#ff7556"
+              />
+
+              <Link to={-1} className='linkLogin'>
+                Cancelar
               </Link>
             </ContainerButton>
           </form>
         </div>
-        <FooterLogin />
       </section>
     </Container>
   );
 }
 
 const Container = styled.div`
-  background-size: cover;
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
@@ -121,15 +116,6 @@ const Container = styled.div`
     img {
       width: 50px;
     }
-  }
-
-  .cuadros {
-    transition: cubic-bezier(0.4, 0, 0.2, 1) 0.6s;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    bottom: 0;
-    transition: 0.6s;
   }
 
   .bannerLeft {
@@ -168,12 +154,7 @@ const Container = styled.div`
         width: 50%;
       }
     }
-
-    .version {
-      color: #727272;
-      text-align: start;
-    }
-
+  
     .contentImg {
       width: 100%;
       display: flex;
@@ -184,23 +165,7 @@ const Container = styled.div`
         animation: flotar 1.5s ease-in-out infinite alternate;
       }
     }
-
-    .phrase {
-      color: #fc6c32;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 30px;
-    }
-
-    .help {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      color: #8d8d8d;
-      font-size: 15px;
-      font-weight: 500;
-    }
-
+  
     &:hover {
       .contentsvg {
         top: -100px;
@@ -214,19 +179,44 @@ const Container = styled.div`
     }
   }
 
-  @keyframes flotar {
-    0% {
-      transform: translate(0, 0px);
+  .headers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 20px;
+      font-weight: 500;
     }
-    50% {
-      transform: translate(0, 15px);
-    }
-    100% {
-      transform: translate(0, -0px);
+
+    span {
+      font-size: 20px;
+      cursor: pointer;
     }
   }
 
-  .linkRegister {
+  .formulario {
+    section {
+      gap: 20px;
+      display: flex;
+      flex-direction: column;
+      .colorContainer {
+        .colorPickerContent {
+          padding-top: 15px;
+          min-height: 50px;
+        }
+      }
+    }
+  }
+`;
+
+const ContainerButton = styled.div`
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+
+  .linkLogin {
     background: ${(props) => props.$bgcolor};
     padding: 0.6em 1.3em;
     font-weight: 900;
@@ -252,17 +242,5 @@ const Container = styled.div`
     }
   }
 `;
-const Title = styled.span`
-  font-size: 3rem;
-  font-weight: 700;
-`;
-const ContainerButton = styled.div`
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-`;
-const TextInitialState = styled.p`
-  color: #fc7575;
-`;
 
-export default Login
+export default Register

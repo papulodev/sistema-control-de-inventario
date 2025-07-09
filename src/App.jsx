@@ -8,6 +8,7 @@ import Sidebar from './components/sidebar/Sidebar'
 import HamburgerMenu from './components/HamburgerMenu'
 import { useLocation } from 'react-router'
 import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
   const { theme } = useTheme();
@@ -21,6 +22,8 @@ function App() {
         {
           pathname === "/login" ? (
             <Login />
+          ) : pathname === "/register" ? (
+            <Register />
           ) : (
             <Container className={sidebarOpen ? 'sidebar-open' : ''}>
               <section className='content-sidebar'>
