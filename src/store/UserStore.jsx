@@ -3,10 +3,10 @@ import { supabase } from "../supabase/supabase.config";
 import { addUser } from "../supabase/UsersCrud";
 
 export const useUserStore = create((set, get) => ({
-  addUserAdmin: async (params) => {
+  addUserAdmin: async (p) => {
     const { data, error } = await supabase.auth.signUp({
-      email: params.email,
-      password: params.password,
+      email: p.email,
+      password: p.password,
     })
     console.log("data dek registro de user auth", data)
 

@@ -24,12 +24,14 @@ function Register() {
 
   const mutation = useMutation({
     mutationFn: async (data) => {
-      const params = {
+      const p = {
         email: data.email,
         password: data.password,
         type_user: "admin"
       };
-      const dt = await addUserAdmin(params);
+
+      console.log("params", p);
+      const dt = await addUserAdmin(p);
       if (dt) {
         navigate("/");
       } else {
