@@ -5,14 +5,19 @@ import DropDownMenu from './shared/DropDownMenu';
 import { useUserAuth } from '../hooks/useUserAuth';
 import { useAuthStore } from '../store/AuthStore';
 import { DesplegableUser } from '../utils/staticData';
+import { useNavigate } from 'react-router';
 
 function Header({ stateConfig }) {
   const { signOut } = useAuthStore();
   const user = useUserAuth();
+  const navigate = useNavigate();
+
+  console.log(user);
 
   const functionByType = async (p) => {
     if (p.tipo === "cerrarsesion") {
       await signOut();
+      navigate('/login');
     }
   };
 

@@ -3,11 +3,11 @@ import styled from "styled-components";
 function CardDataCompany({ title, value, img }) {
   return (
     <Container>
-      <div class="card">
-        <div class="pricing-block-content">
-          <p class="pricing-plan">{title}</p>
-          <div class="price-value">
-            <p class="price-number">{value}</p>
+      <div className="card">
+        <div className="pricing-block-content">
+          <p className="pricing-plan">{title}</p>
+          <div className="price-value">
+            <p className="price-number">{value}</p>
             {img && <img src={img} />}
           </div>
         </div>
