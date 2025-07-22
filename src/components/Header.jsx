@@ -12,8 +12,6 @@ function Header({ stateConfig }) {
   const user = useUserAuth();
   const navigate = useNavigate();
 
-  console.log(user);
-
   const functionByType = async (p) => {
     if (p.tipo === "cerrarsesion") {
       await signOut();
@@ -36,7 +34,7 @@ function Header({ stateConfig }) {
             translatex="-50px"
             translatey="-12px"
           />
-          <span className="nombre">{user.email}</span>
+          <span className="nombre">{user.user?.email}</span>
           {stateConfig.state && (
             <DropDownMenu
               data={DesplegableUser}

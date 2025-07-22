@@ -7,7 +7,7 @@ import Register from '../pages/Register'
 
 function AppRoutes() {
 
-  const user = useUserAuth()
+  const user = useUserAuth()  
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
