@@ -1,17 +1,17 @@
-import { create } from 'zustand'
-import { CountUsersPerCompany, ShowCompany } from '../supabase/CompanyCrud'
+import { create } from 'zustand';
+import { getAmountUsersPerCompany, getCompany } from '../supabase/CompanyCrud';
 
 export const useCompanyStore = create((set, get) => ({
-  usersConter: 0,
-  dataCompany: [],
-  showCompany: async (p) => {
-    const response = await ShowCompany(p);
-    set({ dataCompany: response.company });
-    return response.company;
-  },
-  countUsersPerCompany: async (p) => {
-    const response = await CountUsersPerCompany(p);
-    set({ usersConter: response });
-    return response;
-  }
-})) 
+	amountUsers: 0,
+	dataCompany: [],
+	showCompany: async (p) => {
+		const response = await getCompany(p);
+		set({ dataCompany: response.company });
+		return response.company;
+	},
+	amountUsersPerCompany: async (p) => {
+		const response = await getAmountUsersPerCompany(p);
+		set({ amountUsers: response });
+		return response;
+	},
+}));

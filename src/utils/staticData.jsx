@@ -67,7 +67,7 @@ export const TemasData = [
 ];
 
 //data configuracion
-export const DataModulosConfiguracion = [
+export const DataModulesConfiguration = [
   {
     title: "Productos",
     subtitle: "registra tus productos",

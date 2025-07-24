@@ -11,5 +11,39 @@ export const addUser = async (p) => {
     });
   }
   if (data) return data;
+}
 
+export const getUsers = async () => {
+  let idAuthSupabase = "";
+  const { data: { session } } = await supabase.auth.getSession()
+  if (session != null) {
+    const { user } = session;
+    idAuthSupabase = user.id;
+  }
+
+  const { data } = await supabase
+    .from("users")
+    .select()
+    .eq("id_auth", idAuthSupabase)
+    .maybeSingle();
+
+  if (data) {
+    return data;
+  }
+};
+
+// export const getUsers = async (p) => {
+//   const { error, data } = await supabase.rpc("mostrarpersonal", p);
+//   if (data) {
+//     return data;
+//   }
+// };
+
+export async function getPermits(p) {
+  const { data, error } = await supabase
+    .from("permits")
+    .select(`id, id_user, module_id, modules(name)`)
+    .eq("id_user", p.id_user)
+
+  return data;
 }
