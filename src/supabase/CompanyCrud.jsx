@@ -16,12 +16,9 @@ export const getCompany = async (p) => {
 };
 
 export const getAmountUsersPerCompany = async (p) => {
-	console.log('Fetching amount of users for company:', p);
 	const { data, error } = await supabase.rpc('count_users_per_company', {
 		company_id_param: p.company_id,
 	});
-
-	console.log('Response from count_users_per_company:', data);
 
 	if (data) {
 		return data;

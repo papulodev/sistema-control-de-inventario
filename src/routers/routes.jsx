@@ -9,6 +9,7 @@ import { useUserStore } from '../store/UserStore';
 import ErrorMessagge from '../components/shared/ErrorMessagge';
 import SpinnerLoader from '../components/shared/SpinnerLoader';
 import { useCompanyStore } from '../store/CompanyStore';
+import Configuration from '../pages/Configuration';
 
 function AppRoutes() {
 	const user = useUserAuth();
@@ -30,8 +31,8 @@ function AppRoutes() {
 	});
 
 	// const { data: dataPermits } = useQuery({
-	// 	queryKey: ['mostrar permisos', { id_user: id_user }],
-	// 	queryFn: () => showPermits({ id_user: id_user }),
+	// 	queryKey: ['show permits'],
+	// 	queryFn: () => showPermits({ user_id: id_user }),
 	// 	enabled: !!dataUsers,
 	// });
 
@@ -49,6 +50,7 @@ function AppRoutes() {
 			<Route path="/register" element={<Register />} />
 			<Route element={<ProtectedRoute user={user} redirectTo={'/login'} />}>
 				<Route path="/" element={<Home />} />
+				<Route path="/configuration" element={<Configuration />} />
 			</Route>
 		</Routes>
 	);
