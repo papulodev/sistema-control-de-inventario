@@ -46,8 +46,7 @@ export const getUsers = async () => {
 // };
 
 export async function getPermits(p) {
-	console.log('getPermits', p);
-	const { data, error } = await supabase
+	const { data } = await supabase
 		.from('permits')
 		.select(`id, user_id, module_id, modules(name)`)
 		.eq('user_id', p.user_id);

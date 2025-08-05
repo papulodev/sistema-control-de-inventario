@@ -10,6 +10,7 @@ import ErrorMessagge from '../components/shared/ErrorMessagge';
 import SpinnerLoader from '../components/shared/SpinnerLoader';
 import { useCompanyStore } from '../store/CompanyStore';
 import Configuration from '../pages/Configuration';
+import Brand from '../pages/Brand';
 
 function AppRoutes() {
 	const user = useUserAuth();
@@ -30,11 +31,11 @@ function AppRoutes() {
 		enabled: !!dataUsers,
 	});
 
-	// const { data: dataPermits } = useQuery({
-	// 	queryKey: ['show permits'],
-	// 	queryFn: () => showPermits({ user_id: id_user }),
-	// 	enabled: !!dataUsers,
-	// });
+	const { data: dataPermits } = useQuery({
+		queryKey: ['show permits'],
+		queryFn: () => showPermits({ user_id: id_user }),
+		enabled: !!dataUsers,
+	});
 
 	if (isLoading) {
 		return <SpinnerLoader />;
@@ -51,6 +52,7 @@ function AppRoutes() {
 			<Route element={<ProtectedRoute user={user} redirectTo={'/login'} />}>
 				<Route path="/" element={<Home />} />
 				<Route path="/configuration" element={<Configuration />} />
+				<Route path="/configuration/brands" element={<Brand />} />
 			</Route>
 		</Routes>
 	);
