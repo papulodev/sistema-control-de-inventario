@@ -11,6 +11,7 @@ import SpinnerLoader from '../components/shared/SpinnerLoader';
 import { useCompanyStore } from '../store/CompanyStore';
 import Configuration from '../pages/Configuration';
 import Brand from '../pages/Brand';
+import Categories from '../pages/Categories';
 
 function AppRoutes() {
 	const user = useUserAuth();
@@ -53,6 +54,7 @@ function AppRoutes() {
 				<Route path="/" element={<Home />} />
 				<Route path="/configuration" element={<Configuration />} />
 				<Route path="/configuration/brands" element={<Brand />} />
+				<Route path="/configuration/categories" element={<Categories />} />
 			</Route>
 		</Routes>
 	);
