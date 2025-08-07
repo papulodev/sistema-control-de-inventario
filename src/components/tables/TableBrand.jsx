@@ -289,7 +289,7 @@ const Container = styled.div`
 				}
 			}
 
-			td[data-title]:before {
+			div[data-title]:before {
 				content: attr(data-title);
 				float: left;
 				font-size: 0.8em;

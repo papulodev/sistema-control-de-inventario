@@ -20,7 +20,7 @@ function Pagination({ table, page, toStart, max }) {
 			<button
 				disabled={!table.getCanNextPage()}
 				onClick={() => table.nextPage()}>
-				<span className="iconos">{<VarableIcon.iconoflechaderecha />}</span>
+				<span className="iconos"></span>
 			</button>
 		</Container>
 	);
@@ -31,6 +31,7 @@ const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 	gap: 15px;
+
 	button {
 		background-color: #ff7800;
 		border: none;
@@ -44,9 +45,11 @@ const Container = styled.div`
 		cursor: pointer;
 		text-align: center;
 		transition: 0.3s;
+
 		&:hover {
 			box-shadow: 0px 10px 15px -3px #ff7800;
 		}
+
 		.iconos {
 			color: #fff;
 			&.izquierda {
@@ -54,6 +57,7 @@ const Container = styled.div`
 			}
 		}
 	}
+
 	button[disabled] {
 		background-color: #646464;
 		cursor: no-drop;
