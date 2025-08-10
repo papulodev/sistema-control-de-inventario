@@ -29,7 +29,7 @@ function AddCategories({ action, dataSelect, onClose }) {
 		if (action === 'Editar') {
 			const p = {
 				id: dataSelect.id,
-				descripcion: ConvertCapitalize(data.name),
+				description: ConvertCapitalize(data.name),
 				color: currentColor,
 			};
 			await editingCategory(p);
@@ -73,14 +73,14 @@ function AddCategories({ action, dataSelect, onClose }) {
 					<section>
 						<article>
 							<FormInput
-								icon={<VarableIcon.iconomarca />}
+								icon={<VarableIcon.iconocategorias />}
 								register={register}
 								name="name"
-								label="Marca"
+								label="Categoría"
 								type="text"
-								placeholder="Nombre de la marca"
+								placeholder="Nombre de la categoría"
 								error={errors.name?.type}
-								defaultValue={dataSelect.descripcion}
+								defaultValue={dataSelect.description}
 							/>
 						</article>
 						<article className="colorContainer">
