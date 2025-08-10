@@ -65,6 +65,7 @@ const Container = styled.div`
 		font-family: inherit;
 		width: 100%;
 		border: none;
+		color: ${(props) => props.theme.text};
 		border-bottom: 2px solid #9b9b9b;
 		outline: 0;
 		font-size: 17px;
