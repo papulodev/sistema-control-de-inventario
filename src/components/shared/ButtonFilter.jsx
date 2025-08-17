@@ -22,6 +22,7 @@ const Container = styled.div`
 	font-size: 20px;
 	position: relative;
 	cursor: pointer;
+
 	.contentIcon {
 		position: absolute;
 		top: 25%;
@@ -31,6 +32,7 @@ const Container = styled.div`
 		display: flex;
 		justify-content: center;
 		transition: 0.2s;
+
 		&:hover {
 			transform: scale(1.3);
 		}
