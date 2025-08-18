@@ -44,7 +44,7 @@ function AddProduct({ onClose, dataSelect, action }) {
 		handleSubmit,
 	} = useForm();
 
-	async function insertar(data) {
+	async function handleSubmitProduct(data) {
 		if (action === 'Editar') {
 			const p = {
 				id: dataSelect.id,
@@ -106,7 +106,9 @@ function AddProduct({ onClose, dataSelect, action }) {
 					</section>
 				</div>
 
-				<form className="formulario" onSubmit={handleSubmit(insertar)}>
+				<form
+					className="formulario"
+					onSubmit={handleSubmit(handleSubmitProduct)}>
 					<section className="seccion1">
 						<article>
 							<FormInput
