@@ -13,6 +13,7 @@ import Configuration from '../pages/Configuration';
 import Brand from '../pages/Brand';
 import Categories from '../pages/Categories';
 import Products from '../pages/Products';
+import Users from '../pages/Users';
 
 function AppRoutes() {
 	const user = useUserAuth();
@@ -57,6 +58,7 @@ function AppRoutes() {
 				<Route path="/configuration/brands" element={<Brand />} />
 				<Route path="/configuration/categories" element={<Categories />} />
 				<Route path="/configuration/products" element={<Products />} />
+				<Route path="/configuration/users" element={<Users />} />
 			</Route>
 		</Routes>
 	);
