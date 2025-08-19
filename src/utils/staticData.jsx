@@ -94,26 +94,26 @@ export const DataModulesConfiguration = [
 //tipo usuario
 export const TypeUserData = [
 	{
-		descripcion: 'empleado',
-		icono: '🪖',
+		description: 'empleado',
+		icon: '🪖',
 	},
 	{
-		descripcion: 'administrador',
-		icono: '👑',
+		description: 'administrador',
+		icon: '👑',
 	},
 ];
 //tipodoc
 export const TypeDocData = [
 	{
-		descripcion: 'Dni',
-		icono: '🪖',
+		description: 'Dni',
+		icon: '🪖',
 	},
 	{
-		descripcion: 'Libreta electoral',
-		icono: '👑',
+		description: 'Libreta electoral',
+		icon: '👑',
 	},
 	{
-		descripcion: 'Otros',
-		icono: '👑',
+		description: 'Otros',
+		icon: '👑',
 	},
 ];
