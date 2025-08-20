@@ -38,18 +38,76 @@ export const getUsers = async () => {
 	}
 };
 
-// export const getUsers = async (p) => {
-//   const { error, data } = await supabase.rpc("mostrarpersonal", p);
-//   if (data) {
-//     return data;
-//   }
-// };
+export const getAllUsers = async (p) => {
+	const { error, data } = await supabase.rpc('showpersonal', p);
+	if (data) {
+		return data;
+	}
+};
 
-export async function getPermits(p) {
+export const deleteUser = async (p) => {
+	const { error } = await supabase.from('users').delete().eq('id', p.id);
+	if (error) {
+		alert('Error al eliminar', error.message);
+	}
+};
+
+export const editUser = async (p) => {
+	const { error } = await supabase.from('users').update(p).eq('id', p.id);
+	if (error) {
+		alert('Error al editar Usuarios', error.message);
+	}
+};
+
+export const searchUsers = async (p) => {
+	const { data } = await supabase.rpc('searchpersonal', p);
+	return data;
+};
+
+export const addAsigns = async (p) => {
+	const { error } = await supabase.from('asign_company').insert(p);
+	if (error) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Error al insertar usuario ' + error.message,
+		});
+	}
+};
+
+export const addPermits = async (p) => {
+	console.log('info de addPermits:\n', p);
+	const { error } = await supabase.from('permits').insert(p);
+
+	if (error) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Error al insertar permisos ' + error.message,
+			footer: '<a href="">error</a>',
+		});
+	}
+};
+
+export const getPermits = async (p) => {
 	const { data } = await supabase
 		.from('permits')
 		.select(`id, user_id, module_id, modules(name)`)
 		.eq('user_id', p.user_id);
-
 	return data;
-}
+};
+
+export const deletePermits = async (p) => {
+	const { error } = await supabase
+		.from('permits')
+		.delete()
+		.eq('user_id', p.user_id);
+	if (error) {
+		alert('Error al eliminar', error);
+	}
+};
+
+export const getModules = async () => {
+	const { data } = await supabase.from('modules').select();
+	return data;
+};
