@@ -13,7 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 import UnlockPage from '../components/shared/UnlockPage';
 import SpinnerLoader from '../components/shared/SpinnerLoader';
 
-const STRING_INCLUDES = 'Marca de productos';
+const PERMIT_INCLUDES = 'Marca de productos';
 
 function Brand() {
 	const [state, setState] = useState(false);
@@ -31,7 +31,7 @@ function Brand() {
 
 	const { dataPermits } = useUserStore();
 	const permitState = dataPermits.some((object) =>
-		object.modules.name.includes(STRING_INCLUDES)
+		object.modules.name.includes(PERMIT_INCLUDES)
 	);
 
 	const { showBrands, dataBrand, searchingBrand, search } = useBrandStore();

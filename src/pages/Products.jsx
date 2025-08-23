@@ -15,6 +15,8 @@ import TableProducts from '../components/tables/TableProducts';
 import AddProduct from '../components/forms/AddProduct';
 import ButtonFilter from '../components/shared/ButtonFilter';
 
+const PERMIT_INCLUDES = 'Productos';
+
 function Products() {
 	const [state, setState] = useState(false);
 	const [dataSelect, setDataSelect] = useState([]);
@@ -29,7 +31,7 @@ function Products() {
 
 	const { dataPermits } = useUserStore();
 	const statePermiso = dataPermits.some((object) =>
-		object.modules.name.includes('Productos')
+		object.modules.name.includes(PERMIT_INCLUDES)
 	);
 
 	const { showBrands } = useBrandStore();

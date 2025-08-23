@@ -13,8 +13,7 @@ import { VarableIcon } from '../styles/variables';
 import TableCategories from '../components/tables/TableCategories';
 import AddCategories from '../components/forms/AddCategories';
 
-const STRING_INCLUDES = 'Categoria de productos';
-
+const PERMIT_INCLUDES = 'Categoria de productos';
 function Categories() {
 	const [state, setState] = useState(false);
 	const [dataSelect, setDataSelect] = useState([]);
@@ -29,7 +28,7 @@ function Categories() {
 
 	const { dataPermits } = useUserStore();
 	const permitState = dataPermits.some((object) =>
-		object.modules.name.includes(STRING_INCLUDES)
+		object.modules.name.includes(PERMIT_INCLUDES)
 	);
 	const { showCategories, dataCategories, searchCategory, search, setSearch } =
 		useCategoriesStore();

@@ -12,6 +12,8 @@ import Header from '../components/Header';
 import AddUser from '../components/forms/AddUser';
 import TableUser from '../components/tables/TableUser';
 
+const PERMIT_INCLUDES = 'Personal';
+
 function Users() {
 	const [state, setState] = useState(false);
 	const [dataSelect, setDataSelect] = useState([]);
@@ -34,7 +36,7 @@ function Users() {
 		setSearch,
 	} = useUserStore();
 	const statePermiso = dataPermits.some((object) =>
-		object.modules.name.includes('Personal')
+		object.modules.name.includes(PERMIT_INCLUDES)
 	);
 	const { dataCompany } = useCompanyStore();
 	const { isLoading, error } = useQuery({
