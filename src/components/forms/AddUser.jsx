@@ -115,7 +115,7 @@ function AddUser({ dataSelect, action, onClose }) {
 								/>
 							</article>
 						) : (
-							<span className="form__field disabled">{dataSelect.correo}</span>
+							<span className="form__field disabled">{dataSelect.email}</span>
 						)}
 
 						{action != 'Editar' ? (
